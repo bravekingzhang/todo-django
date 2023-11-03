@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TODO List</title>
+</head>
+<body>
+    <h1>TODO List</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Task</button>
+    </form>
+    <ul>
+        {% for todo in todos %}
+            <li>
+                {{ todo.task }} - {{ todo.completed }}
+                <a href="{% url 'update_todo' todo.id %}">Update</a>
+                <a href="{% url 'delete_todo' todo.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
